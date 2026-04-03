@@ -55,7 +55,7 @@ def playlist(mood: str, confidence: float = 100.0):
         top = songs[:12]
         random.shuffle(top)
         result = top[:8]
-    elif confidence >= 70:
+    elif confidence >= 80:
         # Mix of popular and random
         top = songs[:10]
         random.shuffle(top)
