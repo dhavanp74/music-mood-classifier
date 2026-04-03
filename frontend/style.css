@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f0f1a;
+  color: #e0e0e0;
+  min-height: 100vh;
+}
+
+header {
+  text-align: center;
+  padding: 40px 20px 20px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border-bottom: 1px solid #2a2a4a;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  color: #a78bfa;
+}
+
+header p {
+  color: #94a3b8;
+  margin-top: 8px;
+}
+
+main {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  color: #a78bfa;
+  margin-bottom: 20px;
+}
+
+/* Sliders */
+.sliders-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.slider-group label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.slider-group input[type="range"] {
+  width: 100%;
+  accent-color: #a78bfa;
+  cursor: pointer;
+}
+
+/* Predict Button */
+#predict-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+#predict-btn:hover { opacity: 0.85; }
+#predict-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Mood Result */
+.mood-result {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+#mood-emoji { font-size: 3.5rem; }
+
+#mood-label {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #a78bfa;
+}
+
+/* Confidence Bar */
+.confidence-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.confidence-bar-wrapper label {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.confidence-bar {
+  flex: 1;
+  background: #2a2a4a;
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7c3aed, #a78bfa);
+  border-radius: 999px;
+  transition: width 0.6s ease;
+  width: 0%;
+}
+
+#confidence-text {
+  font-size: 0.9rem;
+  color: #a78bfa;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Songs Grid */
+#songs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.song-card {
+  background: #16213e;
+  border: 1px solid #2a2a4a;
+  border-radius: 12px;
+  padding: 14px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.song-card:hover {
+  transform: translateY(-3px);
+  border-color: #a78bfa;
+}
+
+.song-card .track { 
+  font-size: 0.9rem; 
+  font-weight: 600;
+  color: #e0e0e0;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.song-card .artist { 
+  font-size: 0.78rem; 
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.song-card .popularity {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: #a78bfa;
+}
+
+.hidden { display: none; }

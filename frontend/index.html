@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music Mood Classifier</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🎵 Music Mood Classifier</h1>
+    <p>Adjust the audio features to discover your song's mood</p>
+  </header>
+
+  <main>
+    <!-- Input Section -->
+    <section class="card" id="input-section">
+      <h2>Audio Features</h2>
+
+      <div class="sliders-grid">
+        <div class="slider-group">
+          <label>Danceability <span id="danceability-val">0.50</span></label>
+          <input type="range" id="danceability" min="0" max="1" step="0.01" value="0.5"/>
+        </div>
+        <div class="slider-group">
+          <label>Energy <span id="energy-val">0.50</span></label>
+          <input type="range" id="energy" min="0" max="1" step="0.01" value="0.5"/>
+        </div>
+        <div class="slider-group">
+          <label>Valence <span id="valence-val">0.50</span></label>
+          <input type="range" id="valence" min="0" max="1" step="0.01" value="0.5"/>
+        </div>
+        <div class="slider-group">
+          <label>Acousticness <span id="acousticness-val">0.50</span></label>
+          <input type="range" id="acousticness" min="0" max="1" step="0.01" value="0.5"/>
+        </div>
+        <div class="slider-group">
+          <label>Speechiness <span id="speechiness-val">0.50</span></label>
+          <input type="range" id="speechiness" min="0" max="1" step="0.01" value="0.5"/>
+        </div>
+        <div class="slider-group">
+          <label>Instrumentalness <span id="instrumentalness-val">0.50</span></label>
+          <input type="range" id="instrumentalness" min="0" max="1" step="0.01" value="0.5"/>
+        </div>
+        <div class="slider-group">
+          <label>Liveness <span id="liveness-val">0.50</span></label>
+          <input type="range" id="liveness" min="0" max="1" step="0.01" value="0.5"/>
+        </div>
+        <div class="slider-group">
+          <label>Tempo <span id="tempo-val">120</span> BPM</label>
+          <input type="range" id="tempo" min="0" max="250" step="1" value="120"/>
+        </div>
+        <div class="slider-group">
+          <label>Loudness <span id="loudness-val">-10</span> dB</label>
+          <input type="range" id="loudness" min="-60" max="0" step="0.1" value="-10"/>
+        </div>
+        <div class="slider-group">
+          <label>Popularity <span id="popularity-val">50</span></label>
+          <input type="range" id="popularity" min="0" max="100" step="1" value="50"/>
+        </div>
+        <div class="slider-group">
+          <label>Duration <span id="duration_ms-val">200000</span> ms</label>
+          <input type="range" id="duration_ms" min="30000" max="600000" 
+                 step="1000" value="200000"/>
+        </div>
+      </div>
+
+      <button id="predict-btn" onclick="predictMood()">
+        🎯 Predict Mood
+      </button>
+    </section>
+
+    <!-- Result Section -->
+    <section class="card hidden" id="result-section">
+      <h2>Predicted Mood</h2>
+      <div class="mood-result">
+        <span id="mood-emoji"></span>
+        <span id="mood-label"></span>
+      </div>
+      <div class="confidence-bar-wrapper">
+        <label>Confidence</label>
+        <div class="confidence-bar">
+          <div class="confidence-fill" id="confidence-fill"></div>
+        </div>
+        <span id="confidence-text"></span>
+      </div>
+    </section>
+
+    <!-- Playlist Section -->
+    <section class="card hidden" id="playlist-section">
+      <h2>🎧 Recommended Playlist</h2>
+      <div id="songs-grid"></div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
