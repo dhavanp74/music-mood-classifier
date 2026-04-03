@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from predict import predict_mood, get_playlist
+import random
 
 app = FastAPI(
     title='Music Mood Classifier API',
@@ -41,10 +42,29 @@ def predict(features: AudioFeatures):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get('/playlist/{mood}')
-def playlist(mood: str):
+@app.get("/playlist/{mood}")
+def playlist(mood: str, confidence: float = 100.0):
     songs = get_playlist(mood)
     if not songs:
         raise HTTPException(status_code=404, detail=f"No playlist found for mood: {mood}")
-    return {"mood": mood, "songs": songs}
+    
+    # High confidence → top popular songs
+    # Low confidence → more randomness
+    if confidence >= 90:
+        # Small shuffle within top songs
+        top = songs[:12]
+        random.shuffle(top)
+        result = top[:8]
+    elif confidence >= 70:
+        # Mix of popular and random
+        top = songs[:10]
+        random.shuffle(top)
+        result = top[:8]
+    else:
+        # Full shuffle — anything goes
+        shuffled = songs.copy()
+        random.shuffle(shuffled)
+        result = shuffled[:8]
+
+    return {"mood": mood, "songs": result}
 

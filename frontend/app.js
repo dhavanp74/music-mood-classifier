@@ -44,7 +44,7 @@ async function predictMood() {
     }, 100);
 
     // Step 2 — Fetch playlist
-    const playRes = await fetch(`${API}/playlist/${predData.mood}`);
+    const playRes = await fetch(`${API}/playlist/${predData.mood}?confidence=${predData.confidence}`);
     const playData = await playRes.json();
 
     // Render songs
